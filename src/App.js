@@ -8,20 +8,30 @@ class App extends React.Component {
     }
   }
 
+  handleClickAfterSecond = () => {
+    setTimeout(() => {
+      this.setState({ total: this.state.total - 1 })
+    }, 1000)
+  }
+
+  handleClick = () => {
+    this.setState({ total: this.state.total + 1 })
+  }
+
   render() {
     return (
       <>
         <h1>{this.state.total}</h1>
         <button
           onClick={() => {
-            this.setState({ total: this.state.total + 1 })
+            this.handleClick()
           }}
         >
           +1
         </button>
         <button
           onClick={() => {
-            this.setState({ total: this.state.total - 1 })
+            this.handleClickAfterSecond()
           }}
         >
           -1
