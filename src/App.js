@@ -1,44 +1,20 @@
 import React, { useState } from 'react'
+import MyTextInput from './components/MyTextInput'
 
-class App extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      total: 0,
-    }
-  }
-
-  handleClickAfterSecond = () => {
-    setTimeout(() => {
-      this.setState({ total: this.state.total - 1 })
-    }, 1000)
-  }
-
-  handleClick = () => {
-    this.setState({ total: this.state.total + 1 })
-  }
-
-  render() {
-    return (
-      <>
-        <h1>{this.state.total}</h1>
-        <button
-          onClick={() => {
-            this.handleClick()
-          }}
-        >
-          +1
-        </button>
-        <button
-          onClick={() => {
-            this.handleClickAfterSecond()
-          }}
-        >
-          -1
-        </button>
-      </>
-    )
-  }
+function App() {
+  const [nameFromChild, setNameFromChild] = useState('user')
+  return (
+    <>
+      <h1>您好，{nameFromChild}</h1>
+      <MyTextInput
+        value={nameFromChild}
+        onChange={(event) => setNameFromChild(event.target.value)}
+        // sendNameToMe={(text) => {
+        //   setNameFromChild(text)
+        // }}
+      />
+    </>
+  )
 }
 
 export default App
