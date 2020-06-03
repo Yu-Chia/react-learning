@@ -1,20 +1,12 @@
-import React, { useState } from 'react'
-import MyTextInput from './components/MyTextInput'
+import React from 'react'
+import MyTimerClass from './components/MyTimerClass'
+import MyTimerFunc from './components/MyTimerFunc'
 
-function App() {
-  const [nameFromChild, setNameFromChild] = useState('user')
+export default function App(props) {
   return (
     <>
-      <h1>您好，{nameFromChild}</h1>
-      <MyTextInput
-        value={nameFromChild}
-        onChange={(event) => setNameFromChild(event.target.value)}
-        // sendNameToMe={(text) => {
-        //   setNameFromChild(text)
-        // }}
-      />
+      <MyTimerClass />
+      <MyTimerFunc />
     </>
   )
 }
-
-export default App
