@@ -8,30 +8,35 @@ import MainContent from './components/MainContent'
 import Home from './pages/Home'
 import About from './pages/About'
 import TodoApp from './pages/TodoApp'
+import Product from './pages/Product'
 
 // import TodoAddForm from './components/todo/TodoAddForm'
 //import TodoItem from './components/TodoItem'
 // import TodoList from './components/todo/TodoList'
 
 function App() {
+  const [todos, setTodos] = useState([
+    { id: 1591256594282, text: '買牛奶', completed: false, edited: false },
+    { id: 1591256594281, text: '買iphone', completed: false, edited: true },
+    { id: 1591256594283, text: '學react', completed: false, edited: false },
+  ])
   return (
     <Router>
       <>
         <MyNavbar />
-        <MainContent title="1213">
-          <Link to="/">首頁</Link>
-          <Link to="/about">關於</Link>
-          <Link to="/todoapp">待辨</Link>
-
+        <MainContent>
           <Switch>
+            <Route path="/product/:id?">
+              <Product />
+            </Route>
             <Route path="/about">
-              <About />
+              <About title="關於我們" lead="首頁是一個網站的第一個看到的頁面" />
             </Route>
             <Route path="/todoapp">
-              <TodoApp />
+              <TodoApp title="待辦事項" todos={todos} setTodos={setTodos} />
             </Route>
             <Route exact path="/">
-              <Home />
+              <Home title="首頁" lead="首頁是一個網站的第一個看到的頁面" />
             </Route>
           </Switch>
         </MainContent>

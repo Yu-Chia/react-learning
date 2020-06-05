@@ -2,16 +2,14 @@ import React, { useState, useEffect } from 'react'
 
 import Addform from '../components/todo/Addform'
 import TodoList from '../components/todo/TodoList'
+import MyBanner from '../components/MyBanner'
+import MyBreadcrumb from '../components/MyBreadcrumb'
 
-function TodoApp() {
+function TodoApp(props) {
   // todos列表
   // todo = { id: 123213, text:'買牛奶', completed: false }
-  const [todos, setTodos] = useState([
-    { id: 1591256594282, text: '買牛奶', completed: false, edited: false },
-    { id: 1591256594281, text: '買iphone', completed: false, edited: true },
-    { id: 1591256594283, text: '學react', completed: false, edited: false },
-  ])
 
+  const { todos, setTodos } = props
   // 用於文字輸入框輸入新的todo
   const [text, setText] = useState('')
 
@@ -62,6 +60,8 @@ function TodoApp() {
 
   return (
     <>
+      <MyBanner title={props.title} lead={props.lead} />
+      <MyBreadcrumb />
       <Addform
         text={text}
         todos={todos}

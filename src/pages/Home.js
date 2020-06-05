@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import MyBanner from '../components/MyBanner'
 
-function Home() {
+function Home(props) {
   return (
     <>
-      <h1>首頁</h1>
+      <MyBanner title={props.title} lead={props.lead} />
     </>
   )
 }

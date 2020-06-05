@@ -4,13 +4,15 @@ import { Link, withRouter } from 'react-router-dom'
 import MyBanner from '../components/MyBanner'
 import MyBreadcrumb from '../components/MyBreadcrumb'
 
-function About(props) {
+function Product(props) {
+  console.log(props)
   return (
     <>
-      <MyBanner title={props.title} lead={props.lead} />
+      <MyBanner title="產品" lead="product" />
       <MyBreadcrumb />
+      <h2>目前產品編號(從網址取得)：{props.match.params.id}</h2>
     </>
   )
 }
 
-export default withRouter(About)
+export default withRouter(Product)
