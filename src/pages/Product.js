@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 import MyBanner from '../components/MyBanner'
 import MyBreadcrumb from '../components/MyBreadcrumb'

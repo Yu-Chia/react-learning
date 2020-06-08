@@ -1,5 +1,4 @@
 import React from 'react'
-import MyBanner from '../components/MyBanner'
 
 function MainContent(props) {
   //console.log(props)
