@@ -9,6 +9,8 @@ import Home from './pages/Home'
 import About from './pages/About'
 import TodoApp from './pages/TodoApp'
 import Product from './pages/Product'
+import MemberLogin from './pages/MemberLogin'
+import NotFoundPage from './pages/NotFoundPage'
 
 // import TodoAddForm from './components/todo/TodoAddForm'
 //import TodoItem from './components/TodoItem'
@@ -20,6 +22,8 @@ function App() {
     { id: 1591256594281, text: '買iphone', completed: false, edited: true },
     { id: 1591256594283, text: '學react', completed: false, edited: false },
   ])
+
+  const [name, setName] = useState('')
   return (
     <Router>
       <>
@@ -35,8 +39,14 @@ function App() {
             <Route path="/todoapp">
               <TodoApp title="待辦事項" todos={todos} setTodos={setTodos} />
             </Route>
+            <Route path="/memberlogin">
+              <MemberLogin name={name} setName={setName} />
+            </Route>
             <Route exact path="/">
               <Home title="首頁" lead="首頁是一個網站的第一個看到的頁面" />
+            </Route>
+            <Route exact path="*">
+              <NotFoundPage />
             </Route>
           </Switch>
         </MainContent>

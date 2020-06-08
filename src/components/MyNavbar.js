@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-} from 'react-bootstrap'
+import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
 import { Link, NavLink } from 'react-router-dom'
 
 function MyNavbar() {
@@ -28,6 +21,9 @@ function MyNavbar() {
             </Nav.Link>
             <Nav.Link as={NavLink} to="/product">
               產品
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/memberlogin">
+              會員登入
             </Nav.Link>
           </Nav>
           <Form inline>
