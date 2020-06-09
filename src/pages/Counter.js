@@ -23,7 +23,6 @@ function Counter(props) {
     setTotal(+initTotal)
 
     setTimeout(() => {
-      console.log('render')
       setDataLoading(false)
     }, 1500)
   }, [])

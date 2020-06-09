@@ -1,7 +1,72 @@
 import React, { useState, useEffect } from 'react'
+import { Modal, Button } from 'react-bootstrap'
+import { withRouter } from 'react-router-dom'
 
-function ProductList() {
-  const loading = (
+function ProductList(props) {
+  const [mycart, setMycart] = useState([])
+  const [dataLoading, setDataLoading] = useState(false)
+  const [show, setShow] = useState(false)
+  const [productName, setProductName] = useState('')
+
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+
+  const updateCartToLocalStorage = (value) => {
+    // 開啟載入指示
+    //setDataLoading(true)
+
+    const currentCart = JSON.parse(localStorage.getItem('cart')) || []
+
+    console.log('currentCart', currentCart)
+
+    const newCart = [...currentCart, value]
+    localStorage.setItem('cart', JSON.stringify(newCart))
+
+    console.log('newCart', newCart)
+    // 設定資料
+    setMycart(newCart)
+    setProductName(value.name)
+    handleShow()
+    //alert('已成功加入購物車')
+  }
+
+  // componentDidMount 一開始就會開始載入資料
+  useEffect(() => {
+    //updateCartToLocalStorage()
+  }, [])
+
+  // componentDidUpdate(相依mycart)
+  // 每次total資料有變動就會3秒後關掉載入指示
+  useEffect(() => {
+    // setTimeout(() => {
+    //   setDataLoading(false)
+    // }, 500)
+    //alert('已成功加入購物車')
+  }, [mycart])
+
+  const messageModal = (
+    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+      <Modal.Header closeButton>
+        <Modal.Title>加入購物車訊息</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>產品：{productName} 已成功加入購物車</Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          繼續購物
+        </Button>
+        <Button
+          variant="primary"
+          onClick={() => {
+            props.history.push('/cart')
+          }}
+        >
+          前往購物車結帳
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  )
+
+  const spinner = (
     <>
       <div className="d-flex justify-content-center">
         <div className="spinner-border" role="status">
@@ -30,7 +95,18 @@ function ProductList() {
             <p className="card-text text-danger">NTD 15000元</p>
           </div>
           <div className="card-footer">
-            <button type="button" className="btn btn-success">
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={() => {
+                updateCartToLocalStorage({
+                  id: 1,
+                  name: 'iphone xs',
+                  amount: 1,
+                  price: 15000,
+                })
+              }}
+            >
               加入購物車
             </button>
           </div>
@@ -50,7 +126,18 @@ function ProductList() {
             <p className="card-text text-danger">NTD 200元</p>
           </div>
           <div className="card-footer">
-            <button type="button" className="btn btn-success">
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={() => {
+                updateCartToLocalStorage({
+                  id: 3,
+                  name: 'book',
+                  amount: 1,
+                  price: 200,
+                })
+              }}
+            >
               加入購物車
             </button>
           </div>
@@ -71,7 +158,18 @@ function ProductList() {
             <p className="card-text text-danger">NTD 21000元</p>
           </div>
           <div className="card-footer">
-            <button type="button" className="btn btn-success">
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={() => {
+                updateCartToLocalStorage({
+                  id: 2,
+                  name: 'ipad',
+                  amount: 1,
+                  price: 21000,
+                })
+              }}
+            >
               加入購物車
             </button>
           </div>
@@ -82,9 +180,12 @@ function ProductList() {
 
   return (
     <>
-      <div className="container">{display}</div>
+      <>
+        {messageModal}
+        <div className="container">{dataLoading ? spinner : display}</div>
+      </>
     </>
   )
 }
 
-export default ProductList
+export default withRouter(ProductList)

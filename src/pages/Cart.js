@@ -17,10 +17,10 @@ function Cart() {
     // 設定到mycart，轉為真正的陣列 !!重要
     setMycart(JSON.parse(initCart))
 
-    // 1000ms(一秒後)關閉指示(spinner)
+    // 400ms(400ms後)關閉指示(spinner)
     setTimeout(() => {
       setDataLoading(false)
-    }, 1000)
+    }, 400)
   }, [])
 
   // 模擬componentDidUpdate

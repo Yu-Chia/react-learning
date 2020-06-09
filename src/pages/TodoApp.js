@@ -60,7 +60,7 @@ function TodoApp(props) {
 
   return (
     <>
-      <MyBanner title={props.title} lead={props.lead} />
+      {/* <MyBanner title={props.title} lead={props.lead} /> */}
       <MyBreadcrumb />
       <Addform
         text={text}
