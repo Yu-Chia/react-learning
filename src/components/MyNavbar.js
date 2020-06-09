@@ -52,10 +52,10 @@ function MyNavbar(props) {
               產品
             </Nav.Link>
             <Nav.Link as={NavLink} to="/productlist">
-              productlist
+              產品列表
             </Nav.Link>
             <Nav.Link as={NavLink} to="/cart">
-              cart
+              購物車
             </Nav.Link>
             {auth ? (
               <Nav.Link as={NavLink} to="/todoapp">
