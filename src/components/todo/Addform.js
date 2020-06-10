@@ -1,8 +1,8 @@
 import React from 'react'
 
 function Addform(props) {
-  console.log(props)
-  const { text, setText, todos, setTodos } = props
+  // console.log(props)
+  const { text, todos, setTodos, setText, addNewTodoItemToSever } = props
   return (
     <>
       <div className="form-group">
@@ -31,6 +31,7 @@ function Addform(props) {
 
               // 設定新的todos，變動呈現的列表
               setTodos(newTodos)
+              addNewTodoItemToSever(newTodoItem)
 
               // 清空文字輸入框
               setText('')

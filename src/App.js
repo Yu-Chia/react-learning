@@ -22,31 +22,6 @@ import CounterJSONServer from './pages/CounterJSONServer'
 // import TodoList from './components/todo/TodoList'
 
 function App() {
-  async function getTodosFromServer() {
-    // 開啟載入指示
-
-    // 注意header資料格式要設定，伺服器才知道是json格式
-    const request = new Request('http://localhost:5555/todos', {
-      method: 'GET',
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'appliaction/json',
-      }),
-    })
-    const response = await fetch(request)
-    const data = await response.json()
-    // console.log(data)
-    setTodos(data)
-  }
-  useEffect(() => {
-    getTodosFromServer()
-  }, [])
-  const [todos, setTodos] = useState([
-    { id: 1591256594282, text: '買牛奶', completed: false, edited: false },
-    { id: 1591256594281, text: '買iphone', completed: false, edited: true },
-    { id: 1591256594283, text: '學react', completed: false, edited: false },
-  ])
-
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -107,7 +82,7 @@ function App() {
               <CounterJSONServer />
             </Route>
             <ProtectedRoute path="/todoapp">
-              <TodoApp todos={todos} setTodos={setTodos} isAuth={auth} />
+              <TodoApp isAuth={true} />
             </ProtectedRoute>
             <Route path="/memberlogin">
               <MemberLogin
